@@ -46,42 +46,22 @@ static int countLOC(String fileName) throws IOException {
 	}
 	while(scan.hasNext()) {
 		line =  (String) scan.nextLine();
-		if(line != null) {
-			lineCount++;
-		}
+		
 		if(line.trim().isEmpty()) { //Subtract number of blank lines from lineCount value
 			lineCount--;
 		}
+		else if(line != null) { //Account for the rest of the lines of code.
+			lineCount++;
+		}
 	}
 
-//	InputStream is = new BufferedInputStream(new FileInputStream(fileName));
-//    try {
-//    	//Setup for counting number of lines of code not including comments
-//        byte[] c = new byte[1024];
-//        int count = 0;
-//        int readChars = 0;
-//        boolean empty = true;
-//        while ((readChars = is.read(c)) != -1)
-//        {
-//            empty = false;
-//            for (int i = 0; i < readChars; ++i)
-//            {
-//                if (c[i] == '\n')
-//                    ++lineCount;
-//            }
-//        }
-//        return (count == 0 && !empty) ? 1 : count;
-//    }
-//    finally
-//    {
-//        is.close();
-//    }
 
     	BufferedReader fileRead = new BufferedReader(new FileReader(fileName));
     	while ((line = fileRead.readLine()) != null) {
             if (line.contains("//")) {
-                lineCount--;
+                --lineCount;
             } 
+           
             else if (line.contains("**")) {
             	lineCount--;
             }
