@@ -6,21 +6,32 @@ import java.util.Scanner;
 //Jacob Sacdalan
 //SD1
 //2/28/2018
+
+
 public class Main {
 private static int lineCount;
 
 
-
 public static void main(String[] args) {
-	String filePath;
+	String fileName;
 	System.out.println("Input File Path: ");
 	
 	Scanner userInput = new Scanner(System.in);
-	filePath = userInput.nextLine();
+	fileName = userInput.nextLine();
 	
+	countLOC(fileName);
+	
+	
+	fileName = new File(fileName).getName();
+	System.out.println(fileName);
+	System.out.println("LOC: " + lineCount);
+}
+
+static int countLOC(String fileName) {
 	Scanner scan = null;
+	
 	try {
-		File file = new File(filePath);
+		File file = new File(fileName);
 		scan = new Scanner(file);
 	} catch (FileNotFoundException e) {
 		e.printStackTrace();
@@ -31,11 +42,7 @@ public static void main(String[] args) {
 			lineCount++;
 		}
 	}
-	
-	String fileName = new File(filePath).getName();
-	System.out.println(fileName);
-	System.out.println("LOC: " + lineCount);
+	return lineCount;
 }
-
 
 }
