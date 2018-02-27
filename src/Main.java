@@ -2,6 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
+//Jacob Sacdalan
+//SD1
+//2/28/2018
 public class Main {
 private static int lineCount;
 
