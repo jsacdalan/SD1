@@ -1,11 +1,8 @@
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Scanner;
 
 
@@ -20,7 +17,7 @@ private static int lineCount;
 
 public static void main(String[] args) throws IOException {
 	String fileName;
-	System.out.println("Input File Name or File Path: ");
+	System.out.println("Input File Name: ");
 	
 	Scanner userInput = new Scanner(System.in);
 	fileName = userInput.nextLine();
@@ -55,10 +52,10 @@ static int countLOC(String fileName) throws IOException {
 		}
 	}
 
-
     	BufferedReader fileRead = new BufferedReader(new FileReader(fileName));
     	while ((line = fileRead.readLine()) != null) {
-            if (line.contains("//")) {
+            if (line.contains(";")){
+            	if(line.contains("//"))
                 lineCount--;
             } 
            
@@ -66,8 +63,11 @@ static int countLOC(String fileName) throws IOException {
             	lineCount--;
             }
             else if (line.contains("/*")) {
-                lineCount--;
                 while (!line.contains("*/") && !(line = fileRead.readLine()).contains("*/"));
+                	lineCount--;
+            }
+            else if (line.contains("/*" + "*/" + "%s" + ";")) {
+            	lineCount ++;
             }
         }
         fileRead.close();
