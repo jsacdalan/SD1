@@ -26,7 +26,7 @@ public static void main(String[] args) throws IOException {
 	
 	
 	fileName = new File(fileName).getName();
-	System.out.println("File Name: " + fileName);
+	System.out.println("File Name or File Path: " + fileName);
 	System.out.println("LOC: " + lineCount);
 	userInput.close();
 }
