@@ -20,7 +20,7 @@ private static int lineCount;
 
 public static void main(String[] args) throws IOException {
 	String fileName;
-	System.out.println("Input File Name: ");
+	System.out.println("Input File Name or File Path: ");
 	
 	Scanner userInput = new Scanner(System.in);
 	fileName = userInput.nextLine();
@@ -59,7 +59,7 @@ static int countLOC(String fileName) throws IOException {
     	BufferedReader fileRead = new BufferedReader(new FileReader(fileName));
     	while ((line = fileRead.readLine()) != null) {
             if (line.contains("//")) {
-                --lineCount;
+                lineCount--;
             } 
            
             else if (line.contains("**")) {
